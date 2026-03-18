@@ -1,0 +1,73 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.admin
+.env.test
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+.Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+.jest/
+*.lcov
+test-*.js
+test-*.ts
+test*.js
+test*.ts
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Docker
+.dockerignore
+
+# Logs
+logs/
+*.log
+
+# Cache
+.cache/
+.eslintcache
+
+# Dependencies lock files (optional, comment if you want to include them)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# MongoDB local
+mongodb_data/
