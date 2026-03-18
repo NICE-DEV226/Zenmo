@@ -20,7 +20,7 @@ docker-compose up -d
 ```
 Vérifier que tout tourne :
 - MongoDB : `localhost:27017`
-- Mongo Express (Admin UI) : `http://localhost:8081` (admin/password123)
+- Mongo Express (Admin UI) : `http://localhost:8081` (admin/admin)
 - Redis : `localhost:6379`
 
 ### 3. Backend Setup

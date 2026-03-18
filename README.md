@@ -56,7 +56,7 @@ zenmo-project/
 - **Database** : MongoDB + Mongoose
 - **Cache** : Redis
 - **Auth** : JWT + SMS OTP (Termii)
-- **Storage** : AWS S3
+- **Storage** : Cloudinary CDN
 - **Push** : OneSignal
 
 ### Modules Principaux
