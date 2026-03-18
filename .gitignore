@@ -47,6 +47,19 @@ test-*.js
 test-*.ts
 test*.js
 test*.ts
+security-test-results.txt
+seed.log
+seed_output.txt
+simple-test.js
+startup.log
+test-admin-dashboard.js
+test-api.js
+test-auth-flow.js
+test-comprehensive.js
+test-connection.js
+test-mongo-connection.js
+test-results.txt
+test-security.js
 
 # Temporary files
 tmp/

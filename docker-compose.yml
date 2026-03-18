@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # MongoDB
+  mongo:
+    image: mongo:7.0
+    container_name: zenmo-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: zenmo-admin-password
+      MONGO_INITDB_DATABASE: zenmo
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - zenmo-network
+
+  # MongoDB Express (Admin UI)
+  mongo-express:
+    image: mongo-express:latest
+    container_name: zenmo-mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: zenmo-admin-password
+      ME_CONFIG_MONGODB_URL: mongodb://admin:zenmo-admin-password@mongo:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: admin
+    depends_on:
+      - mongo
+    networks:
+      - zenmo-network
+
+  # Redis (pour WebSocket scaling et cache)
+  redis:
+    image: redis:7-alpine
+    container_name: zenmo-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - zenmo-network
+
+  # Backend NestJS
+  backend:
+    build:
+      context: ./zenmo-backend
+      dockerfile: Dockerfile
+    container_name: zenmo-backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      MONGO_URI: mongodb://admin:zenmo-admin-password@mongo:27017/zenmo?authSource=admin
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}
+      ONESIGNAL_APP_ID: ${ONESIGNAL_APP_ID}
+      ONESIGNAL_API_KEY: ${ONESIGNAL_API_KEY}
+    depends_on:
+      - mongo
+      - redis
+    volumes:
+      - ./zenmo-backend:/app
+      - /app/node_modules
+    networks:
+      - zenmo-network
+
+networks:
+  zenmo-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+  redis-data:
