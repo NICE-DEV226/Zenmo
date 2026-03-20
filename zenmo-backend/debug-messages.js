@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri = 'mongodb+srv://NICEDEV77:eeUDaYF43BW26AG@cluster0.e2ur4fn.mongodb.net/zenmo?retryWrites=true&w=majority&appName=Cluster0';
+const uri = '';
 
 async function debugSpecificConversation() {
     try {
