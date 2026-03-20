@@ -1,0 +1,59 @@
+{
+  "expo": {
+    "name": "zenmo-mobile",
+    "slug": "zenmo-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#7A3EFF"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/PottaOne-Regular.ttf"
+          ]
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "L'application a besoin d'accéder à vos photos pour créer votre profil."
+        }
+      ],
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "L'application a besoin d'accéder à vos contacts pour trouver vos amis."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "L'application a besoin de votre localisation pour vous montrer les vibes autour de vous."
+        }
+      ],
+      "expo-secure-store",
+      "expo-build-properties"
+    ]
+  }
+}
