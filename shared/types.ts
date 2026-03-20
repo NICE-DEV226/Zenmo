@@ -3,9 +3,9 @@
 // ==================== USER TYPES ====================
 export interface User {
   id: string;
-  phone: string;
   phoneVerified: boolean;
-  pseudo: string;
+  username: string;
+  displayName?: string;
   avatarUrl?: string;
   bio?: string;
   vibe: VibeType;
@@ -22,6 +22,8 @@ export interface UserSettings {
   privacy: {
     showOnline: boolean;
     showCity: boolean;
+    discoverableByPhone: boolean;
+    allowMessageRequests: boolean;
   };
 }
 
@@ -29,7 +31,6 @@ export interface UserStats {
   messagesSent: number;
   storiesPosted: number;
   vibesPosted: number;
-  followersCount: number;
 }
 
 // ==================== VIBE TYPES ====================
@@ -60,7 +61,7 @@ export interface VibePost {
 // ==================== CHAT TYPES ====================
 export interface Message {
   id: string;
-  chatId: string;
+  conversationId: string;
   from: string;
   to: string;
   type: 'text' | 'image' | 'audio';
@@ -77,6 +78,7 @@ export interface Message {
 export interface Conversation {
   id: string;
   participants: string[];
+  status: 'PENDING' | 'ACTIVE';
   lastMessage?: {
     text: string;
     at: Date;
@@ -100,10 +102,10 @@ export interface Story {
 }
 
 export interface StoryContent {
-  type: 'image' | 'text';
-  url?: string;
-  text?: string;
+  type: 'image' | 'video';
+  url: string;
   caption?: string;
+  duration?: number;
 }
 
 // ==================== AUTH TYPES ====================
